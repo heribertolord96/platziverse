@@ -4,7 +4,7 @@
   "description": "A Simple IoT Platform - DB Module",
   "main": "index.js",
   "scripts": {
-    "test": "SET DEBUG=platziverse:* && ava --verbose",
+    "test": "SET DEBUG=platziverse:* && nyc --reporter=lcov ava --verbose",
     "setup": "SET DEBUG=platziverse:* && node setup.js",
     "lint": "standard",
     "lint-fix": "standard --fix"
