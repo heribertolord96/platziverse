@@ -4,9 +4,10 @@
   "description": "A Simple IoT Platform - DB Module",
   "main": "index.js",
   "scripts": {
-    "test": "DEBUG=platziverse:* nyc --reporter=lcov ava tests/ --verbose",
-    "setup": "DEBUG=platziverse:* node setup.js",
-    "lint": "standard"
+    "test": "SET DEBUG=platziverse:* && ava --verbose",
+    "setup": "SET DEBUG=platziverse:* && node setup.js",
+    "lint": "standard",
+    "lint-fix": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -19,20 +20,28 @@
   },
   "homepage": "https://github.com/platzi/platziverse#readme",
   "devDependencies": {
-    "ava": "^0.21.0",
-    "nyc": "^11.1.0",
+    "ava": "^3.15.0",
+    "cross-env": "^7.0.3",
+    "nyc": "^15.1.0",
     "proxyquire": "^1.8.0",
-    "sinon": "^3.1.0",
-    "sqlite3": "^3.1.9",
+    "sinon": "^11.1.2",
+    "sqlite3": "^5.0.2",
     "standard": "^10.0.3"
   },
   "dependencies": {
-    "chalk": "^2.1.0",
-    "debug": "^2.6.8",
+    "chalk": "^2.4.2",
+    "debug": "^2.6.9",
     "defaults": "^1.0.3",
-    "inquirer": "^3.2.1",
-    "pg": "^7.1.0",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^4.4.2"
+    "inquirer": "^3.3.0",
+    "install": "^0.13.0",
+    "node-pre-gyp": "^0.17.0",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^4.44.4"
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib",
+    "test": "tests"
   }
 }
