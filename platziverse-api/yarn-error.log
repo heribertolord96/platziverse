@@ -1,0 +1,55 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\laragon\bin\yarn\bin\yarn.js
+
+PATH: 
+  C:\Program Files (x86)\ConEmu;C:\Program Files (x86)\ConEmu\ConEmu;C:\Python39\Scripts;C:\Users\Desarrollo\AppData\Roaming\Python\Python39\Scripts;C:\Windows\System32;C:\nvm;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\Redis\;C:\laragon\bin;C:\laragon\bin\apache\httpd-2.4.35-win64-VC15\bin;C:\laragon\bin\composer;C:\laragon\bin\git\bin;C:\laragon\bin\git\cmd;C:\laragon\bin\git\mingw64\bin;C:\laragon\bin\git\usr\bin;C:\laragon\bin\laragon\utils;C:\laragon\bin\mysql\mysql-5.7.24-winx64\bin;C:\laragon\bin\nginx\nginx-1.16.0;C:\laragon\bin\ngrok;C:\laragon\bin\notepad++;C:\laragon\bin\php\php-7.4.13-Win32-vc15-x64;C:\laragon\bin\putty;C:\laragon\bin\redis\redis-x64-3.2.100;C:\laragon\bin\telnet;C:\laragon\bin\yarn\bin;C:\laragon\usr\bin;C:\Users\Desarrollo\AppData\Local\Yarn\config\global\node_modules\.bin;C:\Users\Desarrollo\AppData\Roaming\Composer\vendor\bin;C:\Users\Desarrollo\AppData\Local\Microsoft\WindowsApps;C:\Users\Desarrollo\AppData\Local\GitHubDesktop\bin;C:\Users\Desarrollo\AppData\Local\Programs\Git\cmd;C:\Python39\Scripts;C:\Users\Desarrollo\.ssh;C:\nvm;C:\Program Files\nodejs;C:\Users\Desarrollo\AppData\Local\Programs\mongosh\;C:\Users\Desarrollo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Desarrollo\AppData\Roaming\npm;C:\Program Files\PostgreSQL\14\bin;C:\Program Files\PostgreSQL\14\lib;
+
+Yarn version: 
+  1.14.0
+
+Node version: 
+  14.17.5
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, scandir 'C:\Users\Desarrollo\Documents\Projects\platziCourses\platziverse\platziverse-api\node_modules\platziverse-db\node_modules\chalk\node_modules'
+
+npm manifest: 
+  {
+    "name": "platziverse-api",
+    "version": "1.0.0",
+    "private": true,
+    "description": "A simple IoT Platform- API",
+    "main": "index.js",
+    "scripts": {
+      "test": "SET DEBUG=platziverse:* ava --verbose",
+      "start": "NODE_ENV=production node server.js",
+      "start-dev": "SET DEBUG=platziverse:* && nodemon server.js",
+      "lint": "standard",
+      "lint-fix": "standard --fix"
+    },
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+      "ava": "^3.15.0",
+      "nodemon": "^2.0.13",
+      "nyc": "^15.1.0",
+      "standart": "^6.1.0",
+      "supertest": "^6.1.6"
+    },
+    "dependencies": {
+      "chalk": "^4.1.2",
+      "debug": "^4.3.2",
+      "express": "^4.17.1",
+      "platziverse-db":"file:../platziverse-db",
+      "express-asyncify": "^1.0.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
