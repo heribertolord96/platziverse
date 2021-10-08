@@ -4,11 +4,12 @@ const debug = require('debug')('platziverse:api')
 const http = require('http')
 const chalk = require('chalk')
 const express = require('express')
+const asyncify = require('express-asyncify')
 
 const api = require('./api')
 
 const port = process.env.PORT || 3000
-const app = express()
+const app = asyncify(express.Router())
 const server = http.createServer(app)
 
 app.use('/api', api)
@@ -30,9 +31,13 @@ function handleFatalError (err) {
   process.exit(1)
 }
 
-process.on('uncaughtException', handleFatalError)
-process.on('unhandledRejection', handleFatalError)
+if (!module.parent) {
+  process.on('uncaughtException', handleFatalError)
+  process.on('unhandledRejection', handleFatalError)
 
-server.listen(port, () => {
-  console.log(`${chalk.green('[platziverse-api]')} server listening on port ${port}`)
-})
+  server.listen(port, () => {
+    console.log(`${chalk.green('[platziverse-api]')} server listening on port ${port}`)
+  })
+}
+
+module.exports = server

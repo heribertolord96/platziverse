@@ -7,13 +7,12 @@ const proxyquire = require('proxyquire')
 const agentFixtures = require('./fixtures/agent')
 
 let config = {
-  logging() { }
+  logging () {}
 }
 
 let MetricStub = {
   belongsTo: sinon.spy()
 }
-
 
 let id = 1
 let uuid = 'yyy-yyy-yyy'
@@ -44,18 +43,17 @@ let newAgent = {
   connected: false
 }
 
-
 test.beforeEach(async () => {
-  sandbox = sinon.createSandbox()
+  sandbox = sinon.sandbox.create()
 
   AgentStub = {
     hasMany: sandbox.spy()
   }
 
-  // Model create Stub
+// Model create Stub
   AgentStub.create = sandbox.stub()
   AgentStub.create.withArgs(newAgent).returns(Promise.resolve({
-    toJSON() { return newAgent }
+    toJSON () { return newAgent }
   }))
 
   // Model update Stub
@@ -70,12 +68,11 @@ test.beforeEach(async () => {
   AgentStub.findOne = sandbox.stub()
   AgentStub.findOne.withArgs(uuidArgs).returns(Promise.resolve(agentFixtures.byUuid(uuid)))
 
-   // Model findAll Stub
-   AgentStub.findAll = sandbox.stub()
-   AgentStub.findAll.withArgs().returns(Promise.resolve(agentFixtures.all))
-   AgentStub.findAll.withArgs(connectedArgs).returns(Promise.resolve(agentFixtures.connected))
-   AgentStub.findAll.withArgs(usernameArgs).returns(Promise.resolve(agentFixtures.platzi))
- 
+  // Model findAll Stub
+  AgentStub.findAll = sandbox.stub()
+  AgentStub.findAll.withArgs().returns(Promise.resolve(agentFixtures.all))
+  AgentStub.findAll.withArgs(connectedArgs).returns(Promise.resolve(agentFixtures.connected))
+  AgentStub.findAll.withArgs(usernameArgs).returns(Promise.resolve(agentFixtures.platzi))
 
   const setupDatabase = proxyquire('../', {
     './models/agent': () => AgentStub,
@@ -86,7 +83,7 @@ test.beforeEach(async () => {
 })
 
 test.afterEach(() => {
-  sandbox && sandbox.restore()
+  sandbox && sinon.sandbox.restore()
 })
 
 test('Agent', t => {
@@ -97,7 +94,6 @@ test.serial('Setup', t => {
   t.true(AgentStub.hasMany.called, 'AgentModel.hasMany was executed')
   t.true(AgentStub.hasMany.calledWith(MetricStub), 'Argument should be the MetricModel')
   t.true(MetricStub.belongsTo.called, 'MetricModel.belongsTo was executed')
-
   t.true(MetricStub.belongsTo.calledWith(AgentStub), 'Argument should be the AgentModel')
 })
 
@@ -154,8 +150,6 @@ test.serial('Agent#findByUsername', async t => {
   t.deepEqual(agents, agentFixtures.platzi, 'agents should be the same')
 })
 
-
-
 test.serial('Agent#createOrUpdate - exists', async t => {
   let agent = await db.Agent.createOrUpdate(single)
 
@@ -163,8 +157,8 @@ test.serial('Agent#createOrUpdate - exists', async t => {
   t.true(AgentStub.findOne.calledTwice, 'findOne should be called twice')
   t.true(AgentStub.findOne.calledWith(uuidArgs), 'findOne should be called with uuid args')
   t.true(AgentStub.update.called, 'agent.update called on model')
-  /*   t.true(AgentStub.update.calledOnce, 'agent.update should be called once')
-    t.true(AgentStub.update.calledWith(single), 'agent.update should be called with specified args') */
+  t.true(AgentStub.update.calledOnce, 'agent.update should be called once')
+  t.true(AgentStub.update.calledWith(single), 'agent.update should be called with specified args')
 
   t.deepEqual(agent, single, 'agent should be the same')
 })
