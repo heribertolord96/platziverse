@@ -32,6 +32,10 @@ agent.on('connected', handler)
 agent.on('disconnected', handler)
 agent.on('message', handler)
 
+<<<<<<< HEAD
+=======
+// Other Agents
+>>>>>>> 30-implementar-rutas-api-con-db
 agent.on('agent/connected', handler)
 agent.on('agent/disconnected', handler)
 agent.on('agent/message', handler)
@@ -41,4 +45,8 @@ function handler (payload) {
 }
 
 setTimeout(() => agent.disconnect(), 20000)
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 30-implementar-rutas-api-con-db

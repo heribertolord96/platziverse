@@ -5,6 +5,7 @@
   "description": "A Simple IoT Platform - Agent",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "NODE_ENV=production node server.js",
     "start-dev": "SET DEBUG=platziverse:* && nodemon server.js",
     "lint": "standard",
@@ -20,5 +21,27 @@
   },
   "dependencies": {
     "uuid": "^8.3.2"
+=======
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/platzi/platziverse.git"
+  },
+  "author": "Julian Duque <julianduquej@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/platzi/platziverse/issues"
+  },
+  "homepage": "https://github.com/platzi/platziverse#readme",
+  "devDependencies": {
+    "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "debug": "^3.0.0",
+    "defaults": "^1.0.3",
+    "mqtt": "^2.11.0",
+    "uuid": "^3.1.0"
+>>>>>>> 30-implementar-rutas-api-con-db
   }
 }

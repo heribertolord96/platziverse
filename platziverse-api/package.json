@@ -7,7 +7,7 @@
   "scripts": {
     "test": "SET DEBUG=platziverse:* ava --verbose",
     "start": "NODE_ENV=production node server.js",
-    "start-dev": "SET DEBUG=platziverse:* && nodemon server.js",
+    "start-dev": "set DEBUG=platziverse:* & nodemon server.js",
     "lint": "standard",
     "lint-fix": "standard --fix"
   },

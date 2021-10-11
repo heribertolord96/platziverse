@@ -16,83 +16,39 @@ api.use('*', async (req, res, next) => {
     debug('Connecting to database')
     try {
       services = await db(config.db)
-      console.log({ services })
     } catch (e) {
-      console.log(e)
       return next(e)
     }
+
     Agent = services.Agent
     Metric = services.Metric
   }
   next()
 })
 
-api.get('/agents', async (req, res, next) => {
+api.get('/agents', (req, res) => {
   debug('A request has come to /agents')
-  Agent.findConnected()
-    .then(agents => {
-      res.send(agents)
-    })
-    .catch(err => {
-      next(err)
-    })
+  res.send({})
 })
 
-api.get('/agent/:uuid', async (req, res, next) => {
+api.get('/agent/:uuid', (req, res, next) => {
   const { uuid } = req.params
 
-  debug(`request to /agent/${uuid}`)
-
-  let agent
-  try {
-    agent = await Agent.findByUuid(uuid)
-  } catch (e) {
-    return next(e)
+  if (uuid !== 'yyy') {
+    return next(new Error('Agent not found'))
   }
 
-  if (!agent) {
-    return next(new Error(`Agent not found with uuid ${uuid}`))
-  }
-
-  res.send(agent)
+  res.send({ uuid })
 })
 
-api.get('/metrics/:uuid', async (req, res, next) => {
+api.get('/metrics/:uuid', (req, res) => {
   const { uuid } = req.params
-
-  debug(`request to /metrics/${uuid}`)
-
-  let metrics = []
-  try {
-    metrics = await Metric.findByAgentUuid(uuid)
-  } catch (e) {
-    return next(e)
-  }
-
-  if (!metrics || metrics.length === 0) {
-    return next(new Error(`Metrics not found for agent with uuid ${uuid}`))
-  }
-
-  res.send(metrics)
+  res.send({ uuid })
 })
 
-api.get('/metrics/:uuid/:type', async (req, res, next) => {
+api.get('/metrics/:uuid/:type', (req, res) => {
   const { uuid, type } = req.params
-
-  debug(`request to /metrics/${uuid}/${type}`)
-
-  let metrics = []
-  try {
-    metrics = await Metric.findByTypeAgentUuid(type, uuid)
-  } catch (e) {
-    return next(e)
-  }
-
-  if (!metrics || metrics.length === 0) {
-    return next(new Error(`Metrics (${type}) not found for agent with uuid ${uuid}`))
-  }
-
-  res.send(metrics)
+  res.send({ uuid, type })
 })
 
 module.exports = api
